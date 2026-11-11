@@ -30,7 +30,18 @@ class UserFactory extends Factory
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
+            'role' => 'seeker',
         ];
+    }
+
+    public function employer(): static
+    {
+    return $this->state(fn () => ['role' => 'employer']);
+    }
+
+    public function seeker(): static
+    {
+    return $this->state(fn () => ['role' => 'seeker']);
     }
 
     /**
